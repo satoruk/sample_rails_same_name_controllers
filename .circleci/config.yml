@@ -1,15 +1,13 @@
-executors:
-  default:
-    docker:
-      - image: cimg/ruby:2.6.6
-        environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
-          RAILS_ENV: test
-          RUBYOPT: "-EUTF-8"
 jobs:
   build:
-    executor: default
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      RAILS_ENV: test
+      RUBYOPT: "-EUTF-8"
+    executor:
+      name: ruby/default
+      tag: 2.6.6
     steps:
       - checkout
       - ruby/install-deps
